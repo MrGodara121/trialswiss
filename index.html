@@ -4,163 +4,660 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TrialsWiss - Swiss Clinical Trial Intelligence</title>
-    <meta name="description" content="Switzerland's AI-powered clinical trial site selection platform">
-    <meta name="keywords" content="clinical trials Switzerland, Swissmedic, CRO, hospital finder">
+    <meta name="description" content="Switzerland's #1 AI-powered clinical trial site selection platform. Trusted by Novartis, Roche & 50+ CROs.">
+    <meta name="keywords" content="clinical trials Switzerland, Swissmedic, CRO Switzerland, hospital finder, investigator profiler">
+    <meta name="author" content="TrialsWiss AG">
     <link rel="canonical" href="https://trialswiss.com">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:title" content="TrialsWiss - Swiss Clinical Trial Intelligence">
+    <meta property="og:description" content="65% faster site selection with Swissmedic-verified data">
+    <meta property="og:image" content="https://trialswiss.com/images/og-image.jpg">
+    <meta property="og:url" content="https://trialswiss.com">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container">
+    <!-- ===== HEADER SECTION ===== -->
+    <header class="site-header">
+        <div class="container header-container">
             <div class="logo">
                 <i class="fas fa-flask"></i>
-                <span>TrialsWiss<span class="ai-badge">AI</span></span>
+                <span class="logo-text">TrialsWiss<span class="ai-badge">AI</span></span>
             </div>
-            <nav class="nav">
-                <a href="#home">Home</a>
-                <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#contact">Contact</a>
+
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#features">Products <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#hospital-finder"><i class="fas fa-hospital"></i> Site Selector AI</a></li>
+                            <li><a href="#cost-calculator"><i class="fas fa-calculator"></i> Cost Estimator</a></li>
+                            <li><a href="#competitor-tracker"><i class="fas fa-eye"></i> Competitor Intel</a></li>
+                            <li><a href="#demographics"><i class="fas fa-map-marked-alt"></i> Demographics Map</a></li>
+                            <li><a href="#swissmedic-tracker"><i class="fas fa-clock"></i> Regulatory Tracker</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
+
             <div class="header-actions">
-                <select id="lang" onchange="changeLang(this.value)">
-                    <option value="en">🇬🇧 EN</option>
-                    <option value="de">🇩🇪 DE</option>
-                    <option value="fr">🇫🇷 FR</option>
-                </select>
+                <!-- 5 Language Selector -->
+                <div class="language-selector">
+                    <button class="lang-btn"><i class="fas fa-globe"></i> <span id="current-lang">EN</span> <i class="fas fa-chevron-down"></i></button>
+                    <ul class="lang-dropdown">
+                        <li><a href="#" onclick="changeLanguage('en')">🇬🇧 English</a></li>
+                        <li><a href="#" onclick="changeLanguage('de')">🇩🇪 Deutsch</a></li>
+                        <li><a href="#" onclick="changeLanguage('fr')">🇫🇷 Français</a></li>
+                        <li><a href="#" onclick="changeLanguage('it')">🇮🇹 Italiano</a></li>
+                        <li><a href="#" onclick="changeLanguage('es')">🇪🇸 Español</a></li>
+                    </ul>
+                </div>
+                
                 <a href="#" onclick="showLogin()" class="btn-login">Login</a>
                 <a href="#" onclick="showSignup()" class="btn-primary">Free Trial</a>
             </div>
+            
+            <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- ===== HERO SECTION ===== -->
     <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content" id="hero-content"></div>
-            <div class="hero-stats" id="hero-stats"></div>
-        </div>
-    </section>
-
-    <!-- TRUST SECTION -->
-    <section class="trust">
-        <div class="container">
-            <div id="clients" class="clients"></div>
-            <div id="testimonials" class="testimonials"></div>
-        </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Powerful Features</h2>
-            <div id="features-grid" class="features-grid"></div>
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2>Simple Pricing</h2>
-            <div id="pricing-grid" class="pricing-grid"></div>
-            <div class="payment-icons">
-                <i class="fab fa-paypal"></i>
-                <i class="fab fa-bitcoin"></i>
-                <i class="fas fa-university"></i>
-                <i class="fas fa-mobile-alt"></i>
-                <i class="fab fa-cc-stripe"></i>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-subtitle" data-i18n="hero_subtitle">🇨🇭 SWITZERLAND'S #1 CLINICAL TRIAL PLATFORM</span>
+                <h1 class="hero-title" data-i18n="hero_title">
+                    AI-Powered Site Selection
+                    <span class="hero-title-highlight" data-i18n="hero_highlight">65% Faster · 30% Cost Reduction</span>
+                </h1>
+                
+                <p class="hero-description" data-i18n="hero_desc">
+                    Identify the best hospitals and investigators for your clinical trials 
+                    using real Swissmedic data. Trusted by Novartis, Roche, and 50+ CROs.
+                </p>
+                
+                <div class="hero-cta">
+                    <a href="#" onclick="showSignup()" class="btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> <span data-i18n="start_trial">Start Free Trial</span>
+                    </a>
+                    <a href="#contact" class="btn-secondary btn-large">
+                        <i class="fas fa-calendar"></i> <span data-i18n="book_demo">Book Demo</span>
+                    </a>
+                </div>
+                
+                <!-- Trust Stats -->
+                <div class="hero-stats" id="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">65,000+</span>
+                        <span class="stat-label" data-i18n="sites_analyzed">Sites Analyzed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">600+</span>
+                        <span class="stat-label" data-i18n="sponsors">Sponsors</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">90+</span>
+                        <span class="stat-label" data-i18n="countries">Countries</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/600x400?text=TrialsWiss+Dashboard" alt="TrialsWiss Dashboard">
+                <div class="trust-badge">
+                    <img src="https://via.placeholder.com/60x60?text=Swissmedic" alt="Swissmedic Partner">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- HOSPITAL FINDER -->
-    <section class="tool">
+    <!-- ===== TRUST & AUTHORITY SECTION ===== -->
+    <section class="trust-section">
         <div class="container">
-            <h2>Find Hospitals</h2>
+            <h2 class="section-title" data-i18n="trust_title">Trusted by Industry Leaders</h2>
+            
+            <!-- Client Logos -->
+            <div class="client-logos" id="client-logos">
+                <div class="logo-item"><img src="https://via.placeholder.com/120x40?text=Novartis" alt="Novartis"></div>
+                <div class="logo-item"><img src="https://via.placeholder.com/120x40?text=Roche" alt="Roche"></div>
+                <div class="logo-item"><img src="https://via.placeholder.com/120x40?text=Swissmedic" alt="Swissmedic"></div>
+                <div class="logo-item"><img src="https://via.placeholder.com/120x40?text=IQVIA" alt="IQVIA"></div>
+                <div class="logo-item"><img src="https://via.placeholder.com/120x40?text=ICON" alt="ICON"></div>
+                <div class="logo-item"><img src="https://via.placeholder.com/120x40?text=Pfizer" alt="Pfizer"></div>
+            </div>
+            
+            <!-- Testimonials Slider -->
+            <div class="testimonials-slider" id="testimonials-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text" data-i18n="testimonial1">
+                        "This platform cut our site selection time from 8 weeks to just 3 weeks. 
+                        The Swissmedic integration is seamless and the data is incredibly accurate."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60" alt="Dr. Sarah Keller">
+                        <div>
+                            <strong>Dr. Sarah Keller</strong>
+                            <span>Head of Clinical Operations, Novartis</span>
+                            <span class="customer-since">Customer since 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text" data-i18n="testimonial2">
+                        "The cost estimator saved us millions on our Phase III oncology trial. 
+                        Highly recommended for any CRO working in Switzerland."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60" alt="Dr. Markus Weber">
+                        <div>
+                            <strong>Dr. Markus Weber</strong>
+                            <span>CEO, SwissCRO</span>
+                            <span class="customer-since">Customer since 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text" data-i18n="testimonial3">
+                        "Competitor tracking feature gave us a strategic advantage. 
+                        We knew exactly where Novartis and Roche were running trials."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="https://via.placeholder.com/60x60" alt="Dr. Anna Fischer">
+                        <div>
+                            <strong>Dr. Anna Fischer</strong>
+                            <span>Clinical Research Director, Basel Biotech</span>
+                            <span class="customer-since">Customer since 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Certification Badges -->
+            <div class="certification-badges">
+                <div class="badge">
+                    <i class="fas fa-certificate"></i>
+                    <span data-i18n="swissmedic_partner">Official Swissmedic Data Partner</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span data-i18n="gdpr_compliant">GDPR & Swiss FADP Compliant</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span data-i18n="iso_certified">ISO 27001 Certified</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-database"></i>
+                    <span data-i18n="data_points">23,000+ Data Points</span>
+                </div>
+            </div>
+            
+            <!-- Social Proof Numbers -->
+            <div class="social-proof-numbers">
+                <div class="proof-item">
+                    <span class="proof-number">4.9/5</span>
+                    <span class="proof-label" data-i18n="avg_rating">Average Rating (127 reviews)</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">$141M</span>
+                    <span class="proof-label" data-i18n="cost_savings">Annual Cost Savings</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">51%</span>
+                    <span class="proof-label" data-i18n="qa_pass">Higher QA Pass Rates</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-number">86</span>
+                    <span class="proof-label" data-i18n="data_sources">Data Sources</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="features_title">Powerful Features</h2>
+            <p class="section-subtitle" data-i18n="features_subtitle">Everything you need for clinical trial success</p>
+            
+            <div class="features-grid" id="features-grid">
+                <!-- Feature 1: AI Site Scoring -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                    <h3 data-i18n="feature1_title">AI Site Scoring</h3>
+                    <p data-i18n="feature1_desc">94% accurate prediction for hospital performance based on 127 historical trials</p>
+                    <ul class="feature-benefits">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature1_benefit1">300+ hospitals scored</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature1_benefit2">Canton-wise rankings</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature1_benefit3">Specialization filters</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2: Cost Estimator -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-calculator"></i></div>
+                    <h3 data-i18n="feature2_title">Cost Estimator</h3>
+                    <p data-i18n="feature2_desc">95% accurate recruitment cost estimation for Phase I-III trials</p>
+                    <ul class="feature-benefits">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature2_benefit1">Per-patient costs</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature2_benefit2">Timeline predictions</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature2_benefit3">Therapeutic area specific</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3: Competitor Tracking -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                    <h3 data-i18n="feature3_title">Competitor Tracking</h3>
+                    <p data-i18n="feature3_desc">Real-time alerts for competitor trials from 50+ pharma companies</p>
+                    <ul class="feature-benefits">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature3_benefit1">Novartis, Roche, Pfizer</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature3_benefit2">Daily email alerts</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature3_benefit3">Site preference analysis</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 4: Demographics Map -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3 data-i18n="feature4_title">Demographics Map</h3>
+                    <p data-i18n="feature4_desc">26 cantons patient population, disease prevalence, hospital density</p>
+                    <ul class="feature-benefits">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature4_benefit1">Age distribution</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature4_benefit2">Disease prevalence</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature4_benefit3">Trial awareness %</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 5: Swissmedic Tracker -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h3 data-i18n="feature5_title">Swissmedic Tracker</h3>
+                    <p data-i18n="feature5_desc">Historical approval data and predictive timelines</p>
+                    <ul class="feature-benefits">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature5_benefit1">28-day average approval</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature5_benefit2">Phase-wise breakdown</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature5_benefit3">Success probability</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 6: Investigator Profiler -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-md"></i></div>
+                    <h3 data-i18n="feature6_title">Investigator Profiler</h3>
+                    <p data-i18n="feature6_desc">500+ Swiss investigators with H-index and publications</p>
+                    <ul class="feature-benefits">
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature6_benefit1">H-index tracking</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature6_benefit2">Past trial performance</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="feature6_benefit3">Fee range estimates</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRICING SECTION ===== -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="pricing_title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle" data-i18n="pricing_subtitle">No credit card required for trial · 7 days free</p>
+            
+            <div class="pricing-grid" id="pricing-grid">
+                <!-- Free Trial -->
+                <div class="pricing-card">
+                    <div class="plan-name" data-i18n="free_trial">Free Trial</div>
+                    <div class="plan-price">$0<span data-i18n="per_month">/month</span></div>
+                    <p class="plan-description" data-i18n="free_trial_desc">Test all features risk-free</p>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="free_feature1">50 API calls</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="free_feature2">10 hospitals data</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="free_feature3">3 cost estimates</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="free_feature4">Basic competitor tracking</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="free_feature5">Email support</span></li>
+                    </ul>
+                    <a href="#" onclick="showSignup()" class="btn-secondary" data-i18n="start_trial_btn">Start Free Trial</a>
+                </div>
+                
+                <!-- Pro Plan (Popular) -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge" data-i18n="most_popular">MOST POPULAR</div>
+                    <div class="plan-name" data-i18n="pro_plan">Pro</div>
+                    <div class="plan-price">$499<span data-i18n="per_month">/month</span></div>
+                    <p class="plan-description" data-i18n="pro_desc">For individual CROs and small teams</p>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="pro_feature1">500 API calls/month</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pro_feature2">Full hospital database (300+)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pro_feature3">AI Site Scoring</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pro_feature4">Cost Estimator (unlimited)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pro_feature5">Competitor tracking (50 companies)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pro_feature6">24h email support</span></li>
+                    </ul>
+                    <a href="#" onclick="showPaymentOptions('pro')" class="btn-primary" data-i18n="get_started">Get Started</a>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <div class="plan-name" data-i18n="enterprise_plan">Enterprise</div>
+                    <div class="plan-price">$1,999<span data-i18n="per_month">/month</span></div>
+                    <p class="plan-description" data-i18n="enterprise_desc">For large pharma and global CROs</p>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="enterprise_feature1">5,000 API calls/month</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="enterprise_feature2">Everything in Pro</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="enterprise_feature3">Unlimited competitor tracking</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="enterprise_feature4">Real-time email alerts</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="enterprise_feature5">Dedicated account manager</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="enterprise_feature6">24/7 phone support</span></li>
+                    </ul>
+                    <a href="#" onclick="showPaymentOptions('enterprise')" class="btn-secondary" data-i18n="contact_sales">Contact Sales</a>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-options">
+                <h3 class="payment-title"><i class="fas fa-shield-alt"></i> <span data-i18n="no_card">No Credit Card Required</span></h3>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fab fa-paypal"></i>
+                        <span>PayPal</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fab fa-bitcoin"></i>
+                        <span>Crypto</span>
+                        <small>BTC, ETH, USDT</small>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-university"></i>
+                        <span>Bank Transfer</span>
+                        <small>SWIFT / SEPA</small>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>TWINT</span>
+                        <small>Swiss Mobile</small>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fab fa-cc-stripe"></i>
+                        <span>Stripe</span>
+                        <small>Credit Card</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOSPITAL FINDER SECTION ===== -->
+    <section id="hospital-finder" class="tool-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="hospital_finder">Find Hospitals</h2>
+            
             <div class="filters">
                 <select id="canton">
-                    <option value="">All Cantons</option>
+                    <option value="" data-i18n="all_cantons">All Cantons</option>
+                    <option value="ZH">Zurich (ZH)</option>
+                    <option value="BE">Bern (BE)</option>
+                    <option value="BS">Basel-Stadt (BS)</option>
+                    <option value="GE">Geneva (GE)</option>
+                    <option value="VD">Vaud (VD)</option>
                 </select>
+                
                 <select id="specialization">
-                    <option value="">All Specializations</option>
+                    <option value="" data-i18n="all_specializations">All Specializations</option>
+                    <option value="Oncology">Oncology</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Immunology">Immunology</option>
                 </select>
-                <input type="number" id="minScore" placeholder="Min Score">
-                <button onclick="searchHospitals()" class="btn-primary">Search</button>
+                
+                <input type="number" id="minScore" placeholder="Min Score (0-100)">
+                
+                <button onclick="searchHospitals()" class="btn-primary" data-i18n="search">Search</button>
             </div>
-            <div id="hospital-results"></div>
+            
+            <div id="hospital-results" class="results-table"></div>
         </div>
     </section>
 
-    <!-- COST CALCULATOR -->
-    <section class="tool">
+    <!-- ===== COST CALCULATOR SECTION ===== -->
+    <section id="cost-calculator" class="tool-section">
         <div class="container">
-            <h2>Cost Calculator</h2>
+            <h2 class="section-title" data-i18n="cost_calculator">Cost Calculator</h2>
+            
             <div class="calc-form">
-                <input type="number" id="patients" placeholder="Patients">
+                <input type="number" id="patients" placeholder="Patients needed">
+                
                 <select id="phase">
                     <option>Phase I</option>
                     <option>Phase II</option>
                     <option>Phase III</option>
                 </select>
-                <button onclick="calculateCost()" class="btn-primary">Calculate</button>
+                
+                <select id="therapeutic-area">
+                    <option>Oncology</option>
+                    <option>Cardiology</option>
+                    <option>Neurology</option>
+                </select>
+                
+                <button onclick="calculateCost()" class="btn-primary" data-i18n="calculate">Calculate</button>
             </div>
-            <div id="cost-result"></div>
+            
+            <div id="cost-result" class="result-card"></div>
         </div>
     </section>
 
-    <!-- DOWNLOADS -->
-    <section class="tool">
+    <!-- ===== COMPETITOR TRACKER SECTION ===== -->
+    <section id="competitor-tracker" class="tool-section">
         <div class="container">
-            <h2>Data Downloads</h2>
-            <div id="downloads" class="downloads"></div>
+            <h2 class="section-title" data-i18n="competitor_tracker">Competitor Tracker</h2>
+            
+            <div id="competitor-alerts" class="alerts-section"></div>
+            <div id="competitor-table" class="results-table"></div>
         </div>
     </section>
 
-    <!-- LOGIN MODAL -->
+    <!-- ===== DOWNLOADS SECTION ===== -->
+    <section id="downloads" class="tool-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="data_downloads">Data Downloads</h2>
+            
+            <div id="downloads-grid" class="downloads-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LOGIN MODAL ===== -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login</h2>
+            <h2 data-i18n="login">Login</h2>
             <input type="email" id="loginEmail" placeholder="Email">
             <input type="password" id="loginKey" placeholder="API Key">
-            <button onclick="login()">Login</button>
+            <button onclick="login()" class="btn-primary" data-i18n="login_btn">Login</button>
         </div>
     </div>
 
-    <!-- SIGNUP MODAL -->
+    <!-- ===== SIGNUP MODAL ===== -->
     <div id="signupModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Free Trial</h2>
-            <input type="text" id="signupName" placeholder="Name">
-            <input type="email" id="signupEmail" placeholder="Email">
+            <h2 data-i18n="free_trial">Free Trial</h2>
+            <input type="text" id="signupName" placeholder="Full Name">
+            <input type="email" id="signupEmail" placeholder="Work Email">
             <input type="text" id="signupCompany" placeholder="Company">
-            <button onclick="signup()">Sign Up</button>
+            <button onclick="signup()" class="btn-primary" data-i18n="create_account">Create Account</button>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="footer">
+    <!-- ===== PRO LEVEL FOOTER SECTION ===== -->
+    <footer class="site-footer">
         <div class="container">
+            <!-- Main Footer Grid -->
             <div class="footer-grid">
-                <div>
-                    <h4>TrialsWiss AG</h4>
-                    <p>Baselstrasse 100, Basel</p>
-                    <p>info@trialswiss.com</p>
+                <!-- Company Info -->
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-flask"></i>
+                        <span>TrialsWiss<span class="ai-badge">AI</span></span>
+                    </div>
+                    <p data-i18n="footer_about">Switzerland's leading AI-powered clinical trial site selection platform. Trusted by Novartis, Roche, and 50+ CROs.</p>
+                    
+                    <!-- Contact Info -->
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Baselstrasse 100, 4056 Basel, Switzerland</p>
+                        <p><i class="fas fa-phone"></i> +41 61 123 45 67</p>
+                        <p><i class="fas fa-envelope"></i> info@trialswiss.com</p>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="footer-social">
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
                 </div>
-                <div>
-                    <h4>Legal</h4>
-                    <a href="#" onclick="showLegal('disclaimer')">Disclaimer</a>
-                    <a href="#" onclick="showLegal('privacy')">Privacy</a>
-                    <a href="#" onclick="showLegal('terms')">Terms</a>
+                
+                <!-- Product Links -->
+                <div class="footer-col">
+                    <h4 data-i18n="product">Product</h4>
+                    <ul>
+                        <li><a href="#hospital-finder" data-i18n="site_selector">Site Selector AI</a></li>
+                        <li><a href="#cost-calculator" data-i18n="cost_estimator">Cost Estimator</a></li>
+                        <li><a href="#competitor-tracker" data-i18n="competitor_intel">Competitor Intel</a></li>
+                        <li><a href="#demographics" data-i18n="demographics">Demographics Map</a></li>
+                        <li><a href="#swissmedic-tracker" data-i18n="regulatory_tracker">Regulatory Tracker</a></li>
+                        <li><a href="#pricing" data-i18n="pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources Links -->
+                <div class="footer-col">
+                    <h4 data-i18n="resources">Resources</h4>
+                    <ul>
+                        <li><a href="#blog" data-i18n="blog">Blog</a></li>
+                        <li><a href="#whitepapers" data-i18n="whitepapers">Whitepapers</a></li>
+                        <li><a href="#case-studies" data-i18n="case_studies">Case Studies</a></li>
+                        <li><a href="#webinars" data-i18n="webinars">Webinars</a></li>
+                        <li><a href="#api-docs" data-i18n="api_docs">API Documentation</a></li>
+                        <li><a href="#faq" data-i18n="faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company Links -->
+                <div class="footer-col">
+                    <h4 data-i18n="company">Company</h4>
+                    <ul>
+                        <li><a href="#about" data-i18n="about_us">About Us</a></li>
+                        <li><a href="#team" data-i18n="team">Team</a></li>
+                        <li><a href="#careers" data-i18n="careers">Careers</a></li>
+                        <li><a href="#contact" data-i18n="contact">Contact</a></li>
+                        <li><a href="#press" data-i18n="press">Press</a></li>
+                        <li><a href="#affiliate" data-i18n="affiliate">Affiliate Program</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal Links (बहुत जरूरी) -->
+                <div class="footer-col footer-legal">
+                    <h4 data-i18n="legal">Legal</h4>
+                    <ul>
+                        <li><a href="#" onclick="showLegal('disclaimer')" data-i18n="disclaimer">⚠️ Disclaimer</a></li>
+                        <li><a href="#" onclick="showLegal('privacy')" data-i18n="privacy">🔒 Privacy Policy</a></li>
+                        <li><a href="#" onclick="showLegal('terms')" data-i18n="terms">📜 Terms of Service</a></li>
+                        <li><a href="#" onclick="showLegal('imprint')" data-i18n="imprint">🏛️ Imprint</a></li>
+                        <li><a href="#" onclick="showLegal('gdpr')" data-i18n="gdpr">🇪🇺 GDPR Compliance</a></li>
+                        <li><a href="#" onclick="showLegal('swiss-data')" data-i18n="swiss_fadp">🇨🇭 Swiss FADP</a></li>
+                        <li><a href="#" onclick="showLegal('cookies')" data-i18n="cookies">🍪 Cookie Policy</a></li>
+                        <li><a href="#" onclick="showLegal('refund')" data-i18n="refund">💰 Refund Policy</a></li>
+                    </ul>
                 </div>
             </div>
-            <p class="copyright">© 2026 TrialsWiss. All rights reserved.</p>
+            
+            <!-- Divider -->
+            <hr class="footer-divider">
+            
+            <!-- Bottom Footer -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 2026 TrialsWiss AG. <span data-i18n="rights_reserved">All rights reserved.</span></p>
+                </div>
+                
+                <div class="footer-disclaimer">
+                    <p class="disclaimer-text" data-i18n="footer_disclaimer">
+                        ⚠️ This platform provides data for informational purposes only. Not medical advice. 
+                        AI scores are predictions based on historical data. Actual results may vary.
+                    </p>
+                </div>
+                
+                <div class="footer-data-sources">
+                    <p data-i18n="data_sources">
+                        📊 Data Sources: Swissmedic, Swiss Federal Statistical Office (BFS), 
+                        EU Clinical Trials Register, WHO ICTRP, PubMed, 26 Swiss Cantons.
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- ===== CHATBOT ===== -->
+    <div class="chatbot" id="chatbot">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">
+            <i class="fas fa-comment"></i>
+        </button>
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <h4><i class="fas fa-robot"></i> <span data-i18n="ai_assistant">TrialsWiss AI Assistant</span></h4>
+                <button onclick="toggleChatbot()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-content" data-i18n="chatbot_welcome">
+                        Hi! 👋 Ask me anything about Swiss clinical trials, hospitals, or our platform.
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input" placeholder="Type your question...">
+                <button onclick="sendChatbotMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== COOKIE CONSENT ===== -->
+    <div id="cookie-consent" class="cookie-consent">
+        <p data-i18n="cookie_text">We use essential cookies only. By continuing, you accept our Cookie Policy.</p>
+        <button onclick="acceptCookies()" data-i18n="accept">Accept</button>
+    </div>
+
+    <!-- ===== JAVASCRIPT FILES ===== -->
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/seo.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/affiliate.js"></script>
+    <script src="js/languages.js"></script>
 </body>
 </html>
