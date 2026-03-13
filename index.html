@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrialsWiss - Swiss Clinical Trial Intelligence</title>
+    <meta name="description" content="Switzerland's AI-powered clinical trial site selection platform">
+    <meta name="keywords" content="clinical trials Switzerland, Swissmedic, CRO, hospital finder">
+    <link rel="canonical" href="https://trialswiss.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-flask"></i>
+                <span>TrialsWiss<span class="ai-badge">AI</span></span>
+            </div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <select id="lang" onchange="changeLang(this.value)">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="de">🇩🇪 DE</option>
+                    <option value="fr">🇫🇷 FR</option>
+                </select>
+                <a href="#" onclick="showLogin()" class="btn-login">Login</a>
+                <a href="#" onclick="showSignup()" class="btn-primary">Free Trial</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content" id="hero-content"></div>
+            <div class="hero-stats" id="hero-stats"></div>
+        </div>
+    </section>
+
+    <!-- TRUST SECTION -->
+    <section class="trust">
+        <div class="container">
+            <div id="clients" class="clients"></div>
+            <div id="testimonials" class="testimonials"></div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Powerful Features</h2>
+            <div id="features-grid" class="features-grid"></div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Simple Pricing</h2>
+            <div id="pricing-grid" class="pricing-grid"></div>
+            <div class="payment-icons">
+                <i class="fab fa-paypal"></i>
+                <i class="fab fa-bitcoin"></i>
+                <i class="fas fa-university"></i>
+                <i class="fas fa-mobile-alt"></i>
+                <i class="fab fa-cc-stripe"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOSPITAL FINDER -->
+    <section class="tool">
+        <div class="container">
+            <h2>Find Hospitals</h2>
+            <div class="filters">
+                <select id="canton">
+                    <option value="">All Cantons</option>
+                </select>
+                <select id="specialization">
+                    <option value="">All Specializations</option>
+                </select>
+                <input type="number" id="minScore" placeholder="Min Score">
+                <button onclick="searchHospitals()" class="btn-primary">Search</button>
+            </div>
+            <div id="hospital-results"></div>
+        </div>
+    </section>
+
+    <!-- COST CALCULATOR -->
+    <section class="tool">
+        <div class="container">
+            <h2>Cost Calculator</h2>
+            <div class="calc-form">
+                <input type="number" id="patients" placeholder="Patients">
+                <select id="phase">
+                    <option>Phase I</option>
+                    <option>Phase II</option>
+                    <option>Phase III</option>
+                </select>
+                <button onclick="calculateCost()" class="btn-primary">Calculate</button>
+            </div>
+            <div id="cost-result"></div>
+        </div>
+    </section>
+
+    <!-- DOWNLOADS -->
+    <section class="tool">
+        <div class="container">
+            <h2>Data Downloads</h2>
+            <div id="downloads" class="downloads"></div>
+        </div>
+    </section>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginKey" placeholder="API Key">
+            <button onclick="login()">Login</button>
+        </div>
+    </div>
+
+    <!-- SIGNUP MODAL -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Free Trial</h2>
+            <input type="text" id="signupName" placeholder="Name">
+            <input type="email" id="signupEmail" placeholder="Email">
+            <input type="text" id="signupCompany" placeholder="Company">
+            <button onclick="signup()">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>TrialsWiss AG</h4>
+                    <p>Baselstrasse 100, Basel</p>
+                    <p>info@trialswiss.com</p>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <a href="#" onclick="showLegal('disclaimer')">Disclaimer</a>
+                    <a href="#" onclick="showLegal('privacy')">Privacy</a>
+                    <a href="#" onclick="showLegal('terms')">Terms</a>
+                </div>
+            </div>
+            <p class="copyright">© 2026 TrialsWiss. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
